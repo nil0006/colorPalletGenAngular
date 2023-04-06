@@ -1,10 +1,10 @@
 <p class="flex items-center justify-center text-2xl sm:text-4xl font-semibold mb-20 mt-20">Color palette generator</p>
 <div class="flex justify-center items-center flex-wrap cursor-pointer ">
-  <div *ngFor="let ele of colorData;let i=index" #tooltip="matTooltip" matTooltip="Copy!" matTooltipClass="tooltip" class="w-64 rounded-lg overflow-hidden shadow-lg flex flex-col justify-center m-2 bg-white reverse" id="copy" [cdkCopyToClipboard]="ele.hex" (click)="copied(i,ele.hex)">
-<div class="h-80 m-3 shadow-pop-br rounded-lg" [ngStyle]="{'background-color':ele.hex}"></div>
+  <div *ngFor="let ele of colorData;let i=index" #tooltip="matTooltip" matTooltip="Copy!" matTooltipClass="tooltip" class="w-64 rounded-lg overflow-hidden shadow-lg flex flex-col justify-center m-2 bg-white reverse" id="copy" [cdkCopyToClipboard]="ele" (click)="copied(i,ele.hex)">
+<div class="h-80 m-3 shadow-pop-br rounded-lg" [ngStyle]="{'background-color':ele}"></div>
     
       <div class="flex justify-center "> 
-      <span class="text-xl font-medium pb-4 cursor-pointer">{{ele.hex}}</span>
+      <span class="text-xl font-medium pb-4 cursor-pointer">{{ele}}</span>
       </div>
   </div>
 </div>

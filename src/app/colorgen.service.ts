@@ -1,43 +1,23 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios'
+var tinycolor = require("tinycolor2");
 @Injectable({
   providedIn: 'root'
 })
 export class ColorgenService {
 
   constructor() { }
-  public generateData(){
-    var dataArray
-    var url = "http://colormind.io/api/";
-    var data = {
-	model : "default",
-	input : [[44,43,44],[90,83,82],"N","N","N"]
-}
-
-var http = new XMLHttpRequest();
-
-http.onreadystatechange = function() {
-	if(http.readyState == 4 && http.status == 200) {
-		dataArray = JSON.parse(http.responseText).result;
-	}
-}
-
-http.open("POST", url, true);
-http.send(JSON.stringify(data));
-  return dataArray
-  }
   async getData(){
-    var URL = "http://colormind.io/api/";
-    const response = await axios.post(URL, {
-      model: 'default'
-    }, {
-      headers: {
-        'Content-Type': 'text/plain'
-      }
-      
-    })
-    var returnVal=response.data.result    
-    return returnVal
+    var colorForm = tinycolor.random();
+		var colorFormToChange = colorForm.toHexString();
+			var chosenColorP = colorFormToChange.toString();
+			var accentColor = tinycolor(chosenColorP).spin(-90).toString();
+			var accentTwoColor = tinycolor(accentColor).spin(-45).toString();
+			var accentThreeColor = tinycolor(accentTwoColor).complement().toHexString();
+      var accentFourColor = tinycolor(chosenColorP).complement().toHexString()
+
+    var newColor=[colorFormToChange,accentColor,accentTwoColor,accentThreeColor,accentFourColor]      
+    return newColor
     
   }
   }

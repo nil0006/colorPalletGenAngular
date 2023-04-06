@@ -27,18 +27,8 @@ export class AppComponent implements OnInit {
   getData(){
     
     this.colorgen.getData().then((val:any)=>{
-      this.colorData=val.map((ele:any)=>{
-        return {rgb:ele,hex:this.rgbToHex(ele[0],ele[1],ele[2])}
+      this.colorData=val
       })      
-    })    
-  }
-   componentToHex(c: number) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-  }
-  
-   rgbToHex(r:number, g:number, b:number) {
-    return "#" + this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
   }
   copied(index:number,hex:any){
     this.myTooltip['_results'][index].disabled= false;
@@ -47,10 +37,8 @@ export class AppComponent implements OnInit {
   this.myTooltip['_results'][index]['_message']='Copy!'
   }
   copyAll(){
-    var clipBoardData= this.colorData.map((ele:any)=>{
-      return ele.hex
-    })
-    this.clipBoard.copy(clipBoardData.toString())
+
+    this.clipBoard.copy(this.colorData.toString())
   }
 }
 
